@@ -4,6 +4,7 @@
   "main": "server.ts",
   "scripts": {
     "start": "ts-node server.ts",
+    "heroku-start": "node dist/src/server.js",
     "build": "tsc"
   },
   "dependencies": {
