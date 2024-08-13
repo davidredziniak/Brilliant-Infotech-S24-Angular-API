@@ -5,6 +5,8 @@ import bcrypt from "bcryptjs";
 export interface UserInter extends Document {
   username: string;
   password: string;
+  userDetails: Object;
+  personalDetails: Object;
   comparePassword(pass: string): Promise<boolean>;
 }
 
@@ -19,6 +21,14 @@ const dataSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
+  userDetails: {
+    required: false,
+    type: Object,
+  },
+  personalDetails: {
+    required: false,
+    type: Object,
+  }
 });
 
 // Salt + Hashes password when saving a new user in the DB

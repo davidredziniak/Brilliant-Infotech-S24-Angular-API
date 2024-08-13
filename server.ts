@@ -18,11 +18,16 @@ if (!ATLAS_URI) {
 
 const PORT = process.env.PORT;
 
+// Limit requests to official front end URL
+var corsOptions = {
+  origin: "https://binfotech-angular-681fa36d1e62.herokuapp.com",
+};
+
 // Connect to MongoDB cluster
 connectToDatabase(ATLAS_URI)
   .then(() => {
     const app: Express = express();
-    app.use(cors());
+    app.use(cors(corsOptions));
 
     // Parse requests of application/json
     app.use(express.json());
