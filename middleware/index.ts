@@ -1,3 +1,3 @@
 const authorizeJwt = require("./authorizeJwt");
 
-module.exports = { authorizeJwt };
+module.exports = { authorizeJwtt };
