@@ -17,3 +17,16 @@ export const user = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+
+export const getUser = async (req: Request, res: Response) => {
+  try {
+    const user = await User.findById(req.userId);
+    if(user){
+      res.status(200).json({ username: user.username, userDetails: user.userDetails, personalDetails: user.personalDetails });
+    } else {
+      res.status(400).json({ error: "Error finding user details. "});
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+}

@@ -60,7 +60,19 @@ export const login = async (req: Request, res: Response) => {
     // Creates and returns a JWT that expires in 1 hour
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
 
-    res.status(200).json({ token });
+    let redirect = "/home";
+
+    // Set redirect if user has not filled out personal details
+    if(!user.personalDetails){
+      redirect = "/personal";
+    }
+
+    // Set redirect if user has not filled out user details
+    if(!user.userDetails){
+      redirect = "/user";
+    }
+
+    res.status(200).json({ token, redirect });
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
   }
