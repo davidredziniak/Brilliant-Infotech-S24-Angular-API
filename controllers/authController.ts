@@ -30,8 +30,9 @@ export const register = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Minimum length of password needs to be 8 characters." });
     }
 
+    let role = "user";
     // Create a new user
-    const user = new User({ username, password });
+    const user = new User({ username, password, role });
     await user.save();
 
     res.status(201).json({ message: "User registered successfully." });

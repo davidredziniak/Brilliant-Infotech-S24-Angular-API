@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs";
 export interface UserInter extends Document {
   username: string;
   password: string;
+  role: string;
   userDetails: Object;
   personalDetails: Object;
   comparePassword(pass: string): Promise<boolean>;
@@ -18,6 +19,10 @@ const dataSchema = new mongoose.Schema({
     type: String,
   },
   password: {
+    required: true,
+    type: String,
+  },
+  role: {
     required: true,
     type: String,
   },
